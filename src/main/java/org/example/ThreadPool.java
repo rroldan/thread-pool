@@ -18,7 +18,6 @@ public interface ThreadPool  {
 
 
     static ThreadPool createThreadPool(int threadCount) {
-        Consumer<ThreadPool> threadPoolConsumer = (ThreadPool threadPool) -> {
             for (int i = 0; i < threadCount; i++) {
                 PoolThreadRunnable poolThreadRunnable =
                         new PoolThreadRunnable(taskQueue);
@@ -28,13 +27,10 @@ public interface ThreadPool  {
             for (PoolThreadRunnable runnable : runnables) {
                 new Thread(runnable).start();
             }
+        return new ThreadPoolImpl();
         };
-        return (ThreadPool) threadPoolConsumer;
-
     }
 
-
-    }
 
 
 
