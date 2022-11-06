@@ -1,6 +1,8 @@
 package org.example;
 
-public class ThreadPoolImpl implements ThreadPool {
+public class ThreadPoolImpl  implements ThreadPool{
+
+    private boolean isStopped = false;
 
     public void run(Runnable runnable) throws Exception {
         if(this.isStopped) throw
@@ -11,7 +13,7 @@ public class ThreadPoolImpl implements ThreadPool {
 
 
     public void terminate(boolean waitPendingTasks) {
-        if waitPendingTasks {
+        if (waitPendingTasks) {
             waitUntilAllTasksFinished();
         } else {
             stop();
@@ -26,11 +28,12 @@ public class ThreadPoolImpl implements ThreadPool {
     }
 
     private synchronized void waitUntilAllTasksFinished() {
-        while(this.taskQueue.size() > 0) {
+        while (this.taskQueue.size() > 0) {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
 }

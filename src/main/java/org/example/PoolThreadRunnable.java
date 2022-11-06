@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.concurrent.BlockingQueue;
+
 public class PoolThreadRunnable implements Runnable {
 
     private Thread        thread    = null;

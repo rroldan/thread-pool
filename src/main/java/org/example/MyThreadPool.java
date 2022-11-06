@@ -6,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 
 public class MyThreadPool {
 
-    public MyThreadPool(int noOfThreads, int maxNoOfTasks, BlockingQueue taskQueue, List<PoolThreadRunnable> runnables, boolean isStopped){
+    public MyThreadPool(int noOfThreads, int maxNoOfTasks, BlockingQueue taskQueue, List<PoolThreadRunnable> runnables){
         taskQueue = new ArrayBlockingQueue(maxNoOfTasks);
 
         for(int i=0; i<noOfThreads; i++){
@@ -18,5 +18,8 @@ public class MyThreadPool {
         for(PoolThreadRunnable runnable : runnables){
             new Thread(runnable).start();
         }
+    }
+
+    public MyThreadPool(int threadCount, int maxNoOfTasks, Object taskQueue, Object runnables) {
     }
 }
